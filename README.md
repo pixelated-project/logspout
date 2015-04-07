@@ -1,3 +1,6 @@
+## pixelated-project's fork of logspout with customized modules list
+
+
 # logspout
 
 > Docker Hub automated builds for `gliderlabs/logspout:latest` and `progrium/logspout:latest` are now pointing to the `release` branch. For `master`, use `gliderlabs/logspout:master`. Individual versions are also available as saved images in [releases](https://github.com/gliderlabs/logspout/releases).
