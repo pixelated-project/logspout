@@ -83,6 +83,7 @@ func (rm *RouteManager) AddFromUri(uri string) error {
 	r := &Route{
 		Address: u.Host,
 		Adapter: u.Scheme,
+		Options: make(map[string]string),
 	}
 	if u.RawQuery != "" {
 		params, err := url.ParseQuery(u.RawQuery)
@@ -150,11 +151,12 @@ func (rm *RouteManager) Route(route *Route, logstream chan *Message) {
 }
 
 func (rm *RouteManager) RoutingFrom(containerID string) bool {
-	routing := false
 	for _, router := range LogRouters.All() {
-		routing = routing || router.RoutingFrom(containerID)
+		if router.RoutingFrom(containerID) {
+			return true
+		}
 	}
-	return routing
+	return false
 }
 
 func (rm *RouteManager) Run() error {
